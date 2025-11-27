@@ -70,7 +70,15 @@ class MyPortfolio:
         """
         TODO: Complete Task 4 Below
         """
-        
+        w = pd.Series(0.0, index=self.price.columns)
+        if "XLK" in assets:
+            w["XLK"] = 1.0
+        else:
+            n_assets = len(assets)
+            if n_assets > 0:
+                w[assets] = 1.0 / n_assets
+        for col in self.price.columns:
+            self.portfolio_weights[col] = w[col]
         
         """
         TODO: Complete Task 4 Above
